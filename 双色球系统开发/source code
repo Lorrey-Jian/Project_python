@@ -1,64 +1,64 @@
-包装车；
+package lorrey;
 
-导入java.util.Random；
-导入java.util.Scanner；
+import java.util.Random;
+import java.util.Scanner;
 
 //<双色球系统开发>
-公开课测试8 {
-公共静态void main（String[]args） {
-int[] userNumbers = userSelectNumbers();
- PrintArray（userNumbers）；
+public class test8 {
+    public static void main(String[] args) {
+        int[] userNumbers = userSelectNumbers();
+        PrintArray(userNumbers);
 
-int[] luckNumber = createLuckNumbers();
- PrintArray（luckNumber）；
+        int[] luckNumber = createLuckNumbers();
+        PrintArray(luckNumber);
 
-judge（userNumbers，luckNumber）；
- }
+        judge(userNumbers,luckNumber);
+    }
 
 
- // one . Design a method for users to bet a group of numbers and return (before six One is the red ball number, and the last one is the blue ball number)
-public static int[]userSelectNumbers（） {
- // two Create an integer array to store the seven Numbers (front six One is the red ball number, and the last one is the blue ball number)
-int[] numbers = new int[ seven ];
-//numbers = [ zero , zero , zero , zero , zero , zero , zero ]
- // zero one two three four five six
-Scanner sc = new Scanner(System.in);
+    //1.设计一个方法,用于让用户投注一组号码并返回(前6个是红球号码,最后一个是蓝球号码)
+    public static int[] userSelectNumbers() {
+        //2.创建一个整型数组,用于存储用户投注的7个号码(前6个是红球号码,最后一个是蓝球号码)
+        int[] numbers = new int[7];
+        //numbers = [0,0,0,0,0,0,0]
+        //           0 1 2 3 4 5 6
+        Scanner sc = new Scanner(System.in);
 
- // three . Before traversal six Locations for users to place bets in turn six Red ball numbers, saved
-for (int i = zero; i < numbers.length - one; i） {
-//i = zero one two three four five
+        //3.遍历前6个位置,让用户依次投注6个红球号码,存入
+        for (int i = 0; i < numbers.length - 1; i++) {
+            //i = 0 1 2 3 4 5
 
-while（真） {
- // four Start asking users to bet a red ball number for the current location（ one - thirty-three (cannot be repeated)
-系统输出打印( &#34;Please enter No.&#34;（i） one ) &#34;Red ball numbers: (1-33)&#34; );
-int number = sc.nextInt();
+            while (true) {
+                //4.开始让用户为当前位置投注一个红球号码(1-33之间,不能重复)
+                System.out.println("请输入第"+(i+1)+"个红球号码:(1-33之间)");
+                int number = sc.nextInt();
 
- // five . First judge whether the red ball number entered by the user is in the one - thirty-three between
-if (number < one||数字&#62; thirty-three ) {
-系统输出打印( &#34;Wrong number, please re-enter&#34; );
- }
-其他的 {
- //Number in one - thirty-three And then judge whether the number is repeated
-if（存在（数字，数字）） {
- //Number The current number is repeated
-系统输出打印( &#34;The number is duplicate, please re-enter&#34; );
- }
-其他的 {
- //Number is not repeated and can be used
-numbers[i] = number;
- break;// End the current bet and end the endless cycle
- }
- }
- }
- }
+                //5.先判断用户输入的红球号码是否在1-33之间
+                if (number < 1 || number > 33){
+                    System.out.println("号码错误,请重新输入");
+                }
+                else {
+                    //号码在1-33之间后还要判断这个号码是否重复
+                    if (exist(numbers,number)){
+                        //number当前号码重复
+                        System.out.println("号码重复,请重新输入");
+                    }
+                    else {
+                        //number没有重复可以使用
+                        numbers[i] = number;
+                        break;//结束当前投注,结束死循环
+                    }
+                }
+            }
+        }
 
- // six Bet the last basketball number
-while（真） {
-系统输出打印( &#34;Please enter the basketball number: (between 1-16)&#34; );
-int number = sc.nextInt();
+        //6.投注最后一个蓝球号码
+        while (true) {
+            System.out.println("请输入蓝球号码:(1-16之间)");
+            int number = sc.nextInt();
 
-if (number < one||数字&#62; sixteen ) {
-系统输出打印( &#34;Wrong number, please re-enter&#34; );
+            if (number < 1 || number > 16){
+                System.out.println("号码错误,请重新输入");
             }
             else {
                 numbers[6] = number;
